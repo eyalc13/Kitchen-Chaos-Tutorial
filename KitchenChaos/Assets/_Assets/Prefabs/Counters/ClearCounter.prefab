@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6487101856900262668
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7986788273559069750}
+  m_Layer: 6
+  m_Name: CounterTopPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7986788273559069750
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6487101856900262668}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1520541931607322594}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7682361164554108313
 GameObject:
   m_ObjectHideFlags: 0
@@ -34,6 +65,7 @@ Transform:
   m_Children:
   - {fileID: 6214680237827154970}
   - {fileID: 4899810297204993000}
+  - {fileID: 7986788273559069750}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -178.645, z: 0}
 --- !u!65 &2360513334896261099
@@ -69,6 +101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91d5b9c97b27f4a4786280e0c38d2d33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClearCounter
+  kitchenObjectSO: {fileID: 11400000, guid: b2d05ba771ce44841846b4e176353122, type: 2}
+  CounterTopPoint: {fileID: 7986788273559069750}
 --- !u!114 &2514498346956652619
 MonoBehaviour:
   m_ObjectHideFlags: 0
