@@ -1,8 +1,8 @@
+using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.InputSystem.Switch;
 
 public class LookAtCamera : MonoBehaviour
 {
@@ -10,31 +10,28 @@ public class LookAtCamera : MonoBehaviour
     {
         LookAt,
         LookAtInverted,
-        CameraForword,
-        CameraForwordInverted,
+        CameraForward,
+        CameraForwarsInverted,
     }
 
     [SerializeField] private Mode mode;
-
     private void LateUpdate()
     {
-        switch (mode)
+        switch(mode)
         {
             case Mode.LookAt:
                 transform.LookAt(Camera.main.transform);
                 break;
             case Mode.LookAtInverted:
-                Vector3 dirFromCamera = transform.position - Camera.main.transform.position;
-                transform.LookAt(transform.position + dirFromCamera);
+                Vector3 dirFormCamera = transform.position - Camera.main.transform.position;
+                transform.LookAt(transform.position + dirFormCamera);
                 break;
-            case Mode.CameraForword:
+            case Mode.CameraForward:
                 transform.forward = Camera.main.transform.forward;
                 break;
-            case Mode.CameraForwordInverted:
-                transform.forward = -Camera.main.transform.forward;
+            case Mode.CameraForwarsInverted:
+                transform.forward = - Camera.main.transform.forward;
                 break;
-
         }
-        transform.LookAt(Camera.main.transform);
     }
 }
