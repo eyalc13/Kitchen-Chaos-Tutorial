@@ -8,12 +8,16 @@ public class DeliveryManeger : MonoBehaviour
 {
     public event EventHandler OnRecipeSpawned;
     public event EventHandler OnRecipeCompleted;
+    public event EventHandler OnRecipeSuccess;
+    public event EventHandler OnRecipeFailed;
+
     public static DeliveryManeger Instance { get; private set; }
     [SerializeField] private RecipeListSO recipeListSO;
     private List<RecipeSO> waitingRecipeSOList;
     private float spawnRecipeTimer;
     private float spawnRecipeTimerMax = 4f;
     private int waitingRecipesMax = 4;
+    private int successfullRecipesAmount;
 
 
     private void Awake()
@@ -29,7 +33,7 @@ public class DeliveryManeger : MonoBehaviour
         {
             spawnRecipeTimer = spawnRecipeTimerMax;
 
-            if (waitingRecipeSOList.Count < waitingRecipesMax)
+            if (KitchenGameManager.Instance.IsGamePlaying() && waitingRecipeSOList.Count < waitingRecipesMax)
             {
                 RecipeSO waitingRecipeSO = recipeListSO.recipeSOList[UnityEngine.Random.Range(0, recipeListSO.recipeSOList.Count)];
                 waitingRecipeSOList.Add(waitingRecipeSO);
@@ -74,10 +78,12 @@ public class DeliveryManeger : MonoBehaviour
                 if (plateContentsMatchesRecipe)
                 {
                     // player delivered the correct recipe!
-                    Debug.Log("player delivered the correct recipe!");
                     waitingRecipeSOList.RemoveAt(i);
 
+                    successfullRecipesAmount++;
+
                     OnRecipeCompleted?.Invoke(this, EventArgs.Empty);
+                    OnRecipeSuccess?.Invoke(this, EventArgs.Empty);
 
                     return;
                 }
@@ -85,7 +91,7 @@ public class DeliveryManeger : MonoBehaviour
         }
         // no matches found
         // the player did not deliver a correct recipe
-        Debug.Log("the player did not deliver a correct recipe");
+        OnRecipeFailed?.Invoke(this, EventArgs.Empty);
     }
 
     public List<RecipeSO> GetWaitingRecipeSOList()
@@ -93,5 +99,8 @@ public class DeliveryManeger : MonoBehaviour
         return waitingRecipeSOList;
     }
 
-
+    public int GetSuccessfullRecipesAmount()
+    {
+        return successfullRecipesAmount;
+    }
 }
